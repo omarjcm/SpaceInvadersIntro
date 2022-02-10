@@ -2,6 +2,7 @@ import pygame
 from alien import Alien
 from generator import Generator
 from hero import Hero
+from rocket import Rocket
 
 '''
 Codigo fuente: https://github.com/janjilecek/pygame-invaders/blob/master/main.py
@@ -10,6 +11,7 @@ Codigo fuente: https://github.com/janjilecek/pygame-invaders/blob/master/main.py
 class Game:
     screen = None
     aliens = []
+    rockets = []
 
     def __init__(self, width, height):
         pygame.init()
@@ -26,6 +28,9 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     done = True
+
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                    self.rockets.append( Rocket(self, hero.x, hero.y) )
                 
             pygame.display.flip()
             self.clock.tick(60)
@@ -33,6 +38,9 @@ class Game:
 
             for alien in self.aliens:
                 alien.draw()
+
+            for rocket in self.rockets:
+                rocket.draw()
 
             hero.draw()
 
