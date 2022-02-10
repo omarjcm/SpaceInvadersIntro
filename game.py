@@ -1,6 +1,7 @@
 import pygame
 from alien import Alien
 from generator import Generator
+from hero import Hero
 
 '''
 Codigo fuente: https://github.com/janjilecek/pygame-invaders/blob/master/main.py
@@ -18,6 +19,7 @@ class Game:
         self.clock = pygame.time.Clock()
         done = False
 
+        hero = Hero(self, width/2, height-20)
         generator = Generator(self)
 
         while not done:
@@ -31,6 +33,8 @@ class Game:
 
             for alien in self.aliens:
                 alien.draw()
+
+            hero.draw()
 
 if __name__ == '__main__':
     game = Game(600, 400)
