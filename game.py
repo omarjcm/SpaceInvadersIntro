@@ -25,6 +25,15 @@ class Game:
         generator = Generator(self)
 
         while not done:
+            pressed = pygame.key.get_pressed()
+
+            if pressed[pygame.K_LEFT]:
+                # Movimiento a la izquierda
+                hero.x -= 2 if hero.x > 20 else 0
+            elif pressed[pygame.K_RIGHT]:
+                # Movimiento a la derecha
+                hero.x += 2 if hero.x < width - 20 else 0
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     done = True
